@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { TextField } from '@material-ui/core';
 import useInputState from 'src/hooks/useInputState';
+import { TodosContext } from 'src/context/TodosContext';
 
 function useKeypress(key, action) {
   useEffect(() => {
@@ -12,8 +13,9 @@ function useKeypress(key, action) {
   }, [action, key]);
 }
 
-function EditForm({ id, task, editTodo, toggle }) {
+function EditForm({ id, task, toggle }) {
   const [value, handleChange, reset] = useInputState(task);
+  const { editTodo } = useContext(TodosContext);
 
   useKeypress('Escape', () => {
     toggle();

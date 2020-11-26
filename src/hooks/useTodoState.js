@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import useLocalStorageState from 'src/hooks/useLocalStorageState';
 

@@ -9,18 +9,24 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import useToggleState from 'src/hooks/useToggleState';
 import EditForm from './EditForm';
+import { TodosContext } from 'src/context/TodosContext';
+import { useContext } from 'react';
 
-function Todo({ id, task, completed, removeTodo, toggleTodo, editTodo }) {
+function Todo({ id, task, completed }) {
   const [editState, toggle] = useToggleState(false);
+  const { removeTodo, toggleTodo } = useContext(TodosContext);
 
   return (
     <ListItem style={{ height: '64px' }}>
       {editState ? (
-        <EditForm id={id} task={task} editTodo={editTodo} toggle={toggle} />
+        <EditForm id={id} task={task} toggle={toggle} />
       ) : (
         <>
           <Checkbox tabIndex={-1} checked={completed} onClick={() => toggleTodo(id)} />
-          <ListItemText style={{ textDecoration: completed ? 'line-through' : 'none' }}>
+          <ListItemText
+            style={{ textDecoration: completed ? 'line-through' : 'none' }}
+            onClick={toggle}
+          >
             {task}
           </ListItemText>
           <ListItemSecondaryAction>
