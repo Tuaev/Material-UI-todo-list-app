@@ -14,7 +14,7 @@ function Todo({ id, task, completed, removeTodo, toggleTodo, editTodo }) {
   const [editState, toggle] = useToggleState(false);
 
   return (
-    <ListItem>
+    <ListItem style={{ height: '64px' }}>
       {editState ? (
         <EditForm id={id} task={task} editTodo={editTodo} toggle={toggle} />
       ) : (
