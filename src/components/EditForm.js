@@ -15,7 +15,7 @@ function useKeypress(key, action) {
 
 function EditForm({ id, task, toggle }) {
   const [value, handleChange, reset] = useInputState(task);
-  const { editTodo } = useContext(TodosContext);
+  const { dispatch } = useContext(TodosContext);
 
   useKeypress('Escape', () => {
     toggle();
@@ -23,7 +23,7 @@ function EditForm({ id, task, toggle }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    editTodo(id, value);
+    dispatch({ type: 'EDIT_TODO', id: id, newTask: value });
     reset();
     toggle();
   };
